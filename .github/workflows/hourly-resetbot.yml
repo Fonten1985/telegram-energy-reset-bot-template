@@ -1,0 +1,15 @@
+name: Hourly ResetBot Trigger
+
+on:
+  schedule:
+    # Запускать каждый час (на 0-й минуте каждого часа по UTC)
+    - cron: '0 * * * *'
+  workflow_dispatch: # Можно запускать вручную из GitHub
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger send_lessons endpoint
+        run: |
+          curl -X GET "https://fonten1985.pythonanywhere.com/trigger_lessons"
